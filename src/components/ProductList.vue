@@ -75,16 +75,13 @@ export default {
   },
   computed: {
     finalPrice() {
-      return this.updatePrice();
+      return this.fruits
+        .reduce((prevValue, curFruit) => prevValue + (curFruit.fruitPrice * curFruit.fruitQuantity), 0);
     },
   },
   methods: {
-    updatePrice() {
-      return this.fruits.reduce((prevValue, curFruit) => prevValue + (curFruit.fruitPrice * curFruit.fruitQuantity), 0);
-    },
     changeFruitQuantity(fruitName, newQuantity) {
       this.fruits.find((fruit) => fruit.fruitName === fruitName).fruitQuantity = newQuantity;
-      this.updatePrice();
     },
   },
 };

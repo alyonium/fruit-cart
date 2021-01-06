@@ -48,6 +48,7 @@ export default {
     },
     removeFruit() {
       if (this.newQuantity === 1) {
+        // eslint-disable-next-line no-alert
         alert('Value of fruit can\'t be less than 1');
       } else {
         this.newQuantity = this.quantity - 1;
@@ -57,7 +58,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>
