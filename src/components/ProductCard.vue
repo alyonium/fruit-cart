@@ -10,7 +10,7 @@
     </td>
     <td
       class="text-center">
-      {{ newQuantity }}
+      {{ quantity }}
     </td>
     <td
       class="text-center">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'ProductCard',
   props: {
@@ -36,23 +38,20 @@ export default {
     price: Number,
     quantity: Number,
   },
-  data() {
-    return {
-      newQuantity: this.quantity,
-    };
-  },
   methods: {
+    ...mapMutations({
+      add: 'addFruit',
+      remove: 'removeFruit',
+    }),
     addFruit() {
-      this.newQuantity += 1;
-      this.$emit('update-final-price', this.fruit, this.newQuantity);
+      this.add(this.fruit);
     },
     removeFruit() {
-      if (this.newQuantity === 1) {
+      if (this.quantity === 1) {
         // eslint-disable-next-line no-alert
         alert('Value of fruit can\'t be less than 1');
       } else {
-        this.newQuantity = this.quantity - 1;
-        this.$emit('update-final-price', this.fruit, this.newQuantity);
+        this.remove(this.fruit);
       }
     },
   },
